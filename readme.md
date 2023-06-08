@@ -1,5 +1,5 @@
 # doc-emailer
-This is a Python program I wrote to submit word documents to students via email.
+This is a Python program I wrote to submit essays as word documents to students via email.
 
 Documents and student email addresses are extracted from a Google form responses Excel sheet using `pandas`.
 
