@@ -1,6 +1,6 @@
 # import required modules
 import pandas as pd
-from functions import create_doc, create_email, send_email, create_smtp
+from functions import create_doc, create_email, create_smtp, send_email
 
 data = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
 students = data.head(50)  # select first 50 students
@@ -11,7 +11,7 @@ for row in students.index:
     # extract name, email, bio
     student = students.loc[row]
     student_name = student["Full Name"]
-    student_email = "franciskohara@gmail.com"#student["Email"]
+    student_email = student["Email"]
 
     # create word document containing bio
     doc_content = student["Bio"]
@@ -41,4 +41,3 @@ for row in students.index:
         print("Row No:", row)
         print("Student Name:", student_name)
         print("Student Email:", student_email)
-    break
