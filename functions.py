@@ -3,7 +3,6 @@ from email.message import EmailMessage
 from smtplib import SMTP
 
 
-# function for creating word document given file name and content.
 def create_doc(filename: str, content: str) -> str:
     """Creates word document in the attachments directory with the specified content and file name.
     Returns path to the created document."""
