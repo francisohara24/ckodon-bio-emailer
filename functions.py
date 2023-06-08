@@ -14,10 +14,9 @@ def create_doc(filename: str, content: str) -> str:
     return filepath
 
 
-# function for sending email to specified address, with subject, and path to attachment.
 def create_email(recp_address: str, subject: str, content: str, attachment_path: str) -> EmailMessage:
-    """Sends an email with specified address, subject, content, and attachment. Returns 'SENT' on success."""
-
+    """Creates an email message with specified address, subject, content, and attachment.
+     Returns EmailMessage object representing the created email."""
     msg = EmailMessage()
     msg["To"] = recp_address
     msg["Subject"] = subject
@@ -41,6 +40,7 @@ def create_smtp(address: str, port: int, username: str, password: str) -> SMTP:
 
 
 def send_email(msg: EmailMessage, smtp_client: SMTP):
+    """Sends email message using the specified smtp client."""
     smtp_client.send_message(msg)
     smtp_client.quit()
     print("EMAIL SENT")

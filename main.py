@@ -5,10 +5,11 @@ from functions import create_doc, create_email, create_smtp, send_email
 data = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
 students = data.head(50)  # select first 50 students
 
+# instantiate smtp client
 smtp = create_smtp("smtp.gmail.com", 587, "ckodontech@gmail.com", "fzdbwumpxpyolpny")
 
 for row in students.index:
-    # extract name, email, bio
+    # extract name, email, bio of student
     student = students.loc[row]
     student_name = student["Full Name"]
     student_email = student["Email"]
