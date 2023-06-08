@@ -1,6 +1,6 @@
 # import required modules
 import pandas as pd
-from my_functions import create_doc, send_mail
+from functions import create_doc, send_mail
 
 data = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
 students = data.head(50)  # select first 50 students
@@ -29,4 +29,12 @@ for row in students.index:
 
     Best,
     The Ckodon Foundation."""
-    send_mail(eml_recipient, eml_subject, eml_content, eml_attachment)
+
+    try:
+        send_mail(eml_recipient, eml_subject, eml_content, eml_attachment)
+    except:
+        print("Error sending mail at-")
+        print("Row No:", row)
+        print("Student Name:", student_name)
+        print("Student Email:", student_email)
+
