@@ -2,12 +2,14 @@
 import pandas as pd
 from functions import create_doc, create_email, create_smtp, send_email
 
+# read google form data
 data = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
 students = data.head(50)  # select first 50 students
 
 # instantiate smtp client
 smtp = create_smtp("smtp.gmail.com", 587, "ckodontech@gmail.com", "fzdbwumpxpyolpny")
 
+# loop through all students
 for row in students.index:
     # extract name, email, bio of student
     student = students.loc[row]
