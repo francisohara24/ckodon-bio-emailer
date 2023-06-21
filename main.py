@@ -2,9 +2,12 @@
 import pandas as pd
 from functions import create_doc, create_email, create_smtp, send_email
 
+
 # read google form data
-data = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
-students = data.head(50)  # select first 50 students
+students = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
+students = students.head(len(students)-9)
+students = students.tail(len(students)-161)
+
 
 # instantiate smtp client
 smtp = create_smtp("smtp.gmail.com", 587, "ckodontech@gmail.com", "fzdbwumpxpyolpny")
@@ -15,9 +18,16 @@ for row in students.index:
     student = students.loc[row]
     student_name = student["Full Name"]
     student_email = student["Email"]
+    student_major = student["Intended Major"]
 
     # create word document containing bio
-    doc_content = student["Bio"]
+    doc_content = f"""Name:   {student_name}
+Email:   {student_email}
+Major:   {student_major}
+Bio:
+        {student["Bio"]}
+"""
+
     doc_name = f"Ckodon Bio [{student_name}].docx"
     doc_path = create_doc(doc_name, doc_content)
 
@@ -27,19 +37,21 @@ for row in students.index:
     msg_attachment = doc_path
     msg_content = f"""Dear {student_name},
 
-    Your Ckodon Bio Submission has been reviewed.
-    Find attached a Word document containing your updated Bio.
-    You are not required to take any further action if your Bio has already been reviewed.
-    You may reply to this email with any concerns or questions.
+Your Ckodon Bio Submission has been reviewed.
+Attached to this email is a Word document containing your updated Bio.
 
-    Best,
-    The Ckodon Foundation."""
+Please do not reply to this email.
+
+Best,
+The Ckodon Foundation."""
+
     msg = create_email(msg_recipient, msg_subject, msg_content, msg_attachment)
 
     # send email message
     try:
         send_email(msg, smtp)
-    except:
+    except Exception as Except:
+        print(Except)
         print("Error sending mail at-")
         print("Row No:", row)
         print("Student Name:", student_name)
