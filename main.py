@@ -1,7 +1,7 @@
 # import required modules
 import pandas as pd
 from functions import create_doc, create_email, create_smtp, send_email
-
+from time import sleep
 
 # read google form data
 students = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
@@ -11,6 +11,10 @@ students = students.tail(len(students)-161)
 
 # instantiate smtp client
 smtp = create_smtp("smtp.gmail.com", 587, "ckodontech@gmail.com", "fzdbwumpxpyolpny")
+
+# add send delay
+counter = 0  # no. of emails sent
+delay_s = 60  # delay in seconds
 
 # loop through all students
 for row in students.index:
@@ -50,9 +54,17 @@ The Ckodon Foundation."""
     # send email message
     try:
         send_email(msg, smtp)
+        counter += 1
+
+        # Wait 1 minute for every 50 emails sent.
+        if counter == 50:
+            counter = 0
+            sleep(delay_s)
+
     except Exception as Except:
         print(Except)
         print("Error sending mail at-")
         print("Row No:", row)
         print("Student Name:", student_name)
         print("Student Email:", student_email)
+        break
