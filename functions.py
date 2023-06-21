@@ -41,5 +41,4 @@ def create_smtp(address: str, port: int, username: str, password: str) -> SMTP:
 def send_email(msg: EmailMessage, smtp_client: SMTP):
     """Sends email message using the specified smtp client."""
     smtp_client.send_message(msg)
-    smtp_client.quit()
     print("EMAIL SENT")
