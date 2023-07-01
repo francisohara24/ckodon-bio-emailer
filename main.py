@@ -5,8 +5,7 @@ from time import sleep
 
 # read google form data
 students = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
-students = students.head(len(students)-9)
-students = students.tail(len(students)-161)
+students = students.tail(len(students)-701)
 
 
 # instantiate smtp client
