@@ -5,4 +5,4 @@ Reviewed essays and student email addresses are extracted from an Excel Sheet of
 
 `python-docx` is used to save the extracted text in Word documents, and ```email``` and ```smtplib``` are used to send the documents to students as email attachments.
 
-The Excel sheet and the `data/attachments` directory were not pushed for confidentiality.
+The Excel sheet and the `data/attachments` directory are not included for privacy reasons.
