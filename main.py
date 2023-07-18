@@ -8,7 +8,9 @@ students = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
 students = students.tail(len(students)-769)  # select current batch of recipients
 
 # instantiate smtp client
-smtp = create_smtp("smtp.gmail.com", 587, "ckodontech@gmail.com", "fzdbwumpxpyolpny")
+sender_email = "ckodontech@gmail.com"
+password = input("Enter your password:\t")
+smtp = create_smtp("smtp.gmail.com", 587, sender_email, password)
 
 # add send delay
 counter = 0  # no. of emails sent
