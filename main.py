@@ -5,7 +5,7 @@ from time import sleep
 
 # read google form data
 students = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
-students = students.tail(len(students)-866)  # select current batch of recipients
+students = students.tail(len(students) - 928)  # select current batch of recipients
 
 # instantiate smtp client
 sender_email = "ckodontech@gmail.com"

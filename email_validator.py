@@ -3,7 +3,7 @@ import re
 import pandas as pd
 
 students = pd.read_excel("./data/Ckodon Bio Submission Form (Responses).xlsx")
-students = students.tail(len(students) - 866)
+students = students.tail(len(students) - 928)
 print(students)
 def validate(email: str)-> bool:
     is_valid = False
