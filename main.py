@@ -2,15 +2,21 @@
 import pandas as pd
 from functions import create_doc, create_email, create_smtp, send_email
 from time import sleep
+import json
 
 # read google form data
 students = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
-students = students.tail(len(students) - 962)  # select current batch of recipients
+students = students.tail(len(students) - 1055)  # select current batch of recipients
 
-# instantiate smtp client
-sender_email = "ckodontech@gmail.com"
-password = input("Enter your password:\t")
-smtp = create_smtp("smtp.gmail.com", 587, sender_email, password)
+# extract smtp client credentials
+client_credentials = json.loads(open("./data/credentials.json").read())
+server_address = client_credentials["server_address"]
+port = client_credentials["port"]
+username = client_credentials["username"]
+password = client_credentials["password"]
+
+# create smtp client
+smtp = create_smtp(server_address, port, username, password)
 
 # add send delay
 counter = 0  # no. of emails sent
