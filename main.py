@@ -6,7 +6,7 @@ import json
 
 # read google form data
 students = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
-students = students.tail(len(students) - 1055)  # select current batch of recipients
+students = students.tail(len(students) - 1104)  # select current batch of recipients
 
 # extract smtp client credentials
 client_credentials = json.loads(open("./data/credentials.json").read())
