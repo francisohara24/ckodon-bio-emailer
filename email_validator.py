@@ -3,7 +3,7 @@ import re
 import pandas as pd
 
 students = pd.read_excel("./data/Ckodon Bio Submission Form (Responses).xlsx")
-students = students.tail(len(students) - 1104)
+students = students.tail(len(students) - 1134)
 print(students["Full Name"])
 
 
