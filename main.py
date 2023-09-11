@@ -6,7 +6,7 @@ import json
 
 # read google form data
 students = pd.read_excel("data/Ckodon Bio Submission Form (Responses).xlsx")
-students = students.tail(len(students) - 1104)  # select current batch of recipients
+students = students.tail(len(students) - 1134)  # select current batch of recipients
 
 # extract smtp client credentials
 client_credentials = json.loads(open("./data/credentials.json").read())
@@ -70,7 +70,7 @@ The Ckodon Foundation."""
     except Exception as Except:
         print(Except)
         print("Error sending mail at-")
-        print("Row No:", row)
+        print("Row No:", row + 2)
         print("Student Name:", student_name)
         print("Student Email:", student_email)
         break
