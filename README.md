@@ -1,4 +1,4 @@
-# ckodon-essay-emailer
+# ckodon-bio-emailer
 This is a Python program I wrote to automate the process of submitting reviewed college application bios via email to students at [the Ckodon Foundation](https://www.ckodon.com/ckodon-foundation).
 
 The reviewed bios and student email addresses are extracted from an Excel Sheet of Google Form responses using `pandas`.
